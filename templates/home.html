@@ -31,6 +31,13 @@
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="friday" value="friday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="saturday" value="saturday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="sunday" value="sunday"></td>
+                <td>
+                    <p>
+                        <form method='POST' action='/habits/{{ habit._id }}/delete'>
+                            <button type='submit'>Delete</button>
+                        </form>
+                    </p>
+                </td>
             </tr>
         {% endfor %}
     </table>
