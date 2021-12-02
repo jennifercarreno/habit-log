@@ -6,39 +6,19 @@
         <h1> Habit Log </h1>
     </div>
     
-    <!-- <h3> Weekly </h3>
 
-    <table class = table-bordered>
-        <tr>
-            <th>Habit</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-
-        </tr>
-        
-    </table> -->
-
-    <div class="footer">
-        <form method='POST' action='/habits'>
-            <div class="row">
-                <div class="col-lg-1">
-                    <label for='habit-name'>Name</label><br>
-                </div>
-                <div class="col">
-                    <input id='habit-name' type='text' name='name' value=''/>
-                </div>
-                <div class="col">
-                    <p>
-                        <button type='submit'>Save Habit</button>
-                    </p>
-                </div>
-              </div>
-        </form>
-    </div>
+    <form method='POST' action='/habits'>
+        <div class="col">
+            <h1><label for='habit-name'>New Habit</label><br></h1>
+        </div>
+        <div class="col">
+            <input id='habit-name' type='text' name='name' value='' placeholder="name"/>
+        </div>
+        <div class="col">
+            <p>
+                <button type='submit' class="mt-3">Save Habit</button>
+            </p>
+        </div>
+    </form>
 
 {% endblock %}

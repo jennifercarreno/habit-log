@@ -8,7 +8,7 @@
     
     <h3> Weekly </h3>
 
-    <table class = table-bordered>
+    <table class = "table-bordered">
         <tr>
             <th>Habit</th>
             <th>Monday</th>
@@ -23,7 +23,7 @@
 
         {% for habit in habits %}
             <tr>
-                <td style="text-align: center;"><a href='/habits/{{ habit._id }}'>{{ habit.name }}</a></td>
+                <td style="text-align: center;">{{ habit.name }}</td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="monday" value="monday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="tuesday" value="tuesday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="wednesday" value="wednesday"></td>
@@ -31,14 +31,15 @@
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="friday" value="friday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="saturday" value="saturday"></td>
                 <td style="text-align: center;"><input class="form-check-input" type="checkbox" id="sunday" value="sunday"></td>
-                <td>
+                <td style="text-align: center;"><button type="submit">Save</button></td>
+                <td style="text-align: center;">
                     <p>
                         <form method='POST' action='/habits/{{ habit._id }}/delete'>
                             <button type='submit'>Delete</button>
                         </form>
                     </p>
                 </td>
-                <td>
+                <td style="text-align: center;">
                     <p><a href='/habits/{{ habit._id }}/edit'><button type='submit'>Edit</button></a></p>
                 </td>
             </tr>
