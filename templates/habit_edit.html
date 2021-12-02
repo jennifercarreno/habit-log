@@ -1,0 +1,44 @@
+<!-- templates/habit_edit.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class = "nav">
+        <h1> Habit Log </h1>
+    </div>
+    
+    <!-- <h3> Weekly </h3>
+
+    <table class = table-bordered>
+        <tr>
+            <th>Habit</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+
+        </tr>
+        
+    </table> -->
+
+    <div class="footer">
+        <form method='POST' action='/habits/{{habit._id}}'>
+            <div class="row">
+                <div class="col-lg-1">
+                    <label for='habit-name'>Name</label><br>
+                </div>
+                <div class="col">
+                    <input id='habit-name' type='text' name='name' value='{{habit.name}}'/>
+                </div>
+                <div class="col">
+                    <p>
+                        <button type='submit'>Save Habit</button>
+                    </p>
+                </div>
+              </div>
+        </form>
+    </div>
+
+{% endblock %}
