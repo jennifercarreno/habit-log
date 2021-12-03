@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, redirect, url_for, request
 from bson.objectid import ObjectId
 from pymongo import MongoClient
@@ -9,6 +10,15 @@ db = client.habitLog
 habits = db.habits
 
 app = Flask(__name__)
+
+def blank():
+    for habit in habits.find():
+        habit_check = habit.get('monday')
+        if habit_check == '':
+            habit = {'monday': "pee"}
+            print("found unchecked")
+    
+    return
 
 # home page
 @app.route('/')
@@ -25,9 +35,36 @@ def habits_new():
 def habits_submit():
     habit = {
         'name': request.form.get('name'),
+        'monday': request.form.get('monday'),
+        'tuesday': request.form.get('tuesday'),
+        'wednesday': request.form.get('wednesday'),
+        'thursday':request.form.get('thursday'),
+        'friday': request.form.get('friday'),
+        'saturday': request.form.get('saturday'),
+        'sunday': request.form.get('sunday')
     }
+    
+    # blank()
+
+    # if habit.get('monday') == '':
+    #     habit.monday = ''
+    # if habits.find_one('tuesday') == 'None':
+    #     habit['tuesday'] = ''
+    # if habits.find_one('wednesday') == 'None':
+    #     habit['wednesday'] = ''
+    # if habits.find_one('thursday') == 'None':
+    #     habit['thursday'] = ''
+    # if habits.find_one('friday') == 'None':
+    #     habit['friday'] = ''
+    # if habits.find_one('saturday') == 'None':
+    #     habit['saturday'] = ''
+    # if habits.find_one('sunday') == 'None':
+    #     habit['sunday'] = ''
+    
     habits.insert_one(habit)
-    print(habits)
+
+    print(habits.find_one('monday'))
+    # print(habit['monday'].value)
     return redirect(url_for('.index'))
 
 # deletes a habit
