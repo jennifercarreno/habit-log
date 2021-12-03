@@ -14,8 +14,8 @@ app = Flask(__name__)
 def blank():
     for habit in habits.find():
         habit_check = habit.get('monday')
-        if habit_check == '':
-            habit = {'monday': "pee"}
+        if habit_check != '☑':
+            habit["monday"] = 'test'
             print("found unchecked")
     
     return
@@ -27,7 +27,7 @@ def mondaySum():
         if monday_count == '☑':
             monday_logs.append(monday_count)
     count = len(monday_logs)
-    print(monday_logs)
+    # print(monday_logs)
     return str(count)
 
 def tuesdaySum():
@@ -37,7 +37,7 @@ def tuesdaySum():
         if tuesday_count == '☑':
             tuesday_logs.append(tuesday_count)
     count = len(tuesday_logs)
-    print(tuesday_logs)
+    # print(tuesday_logs)
     return str(count)
 
 def thursdaySum():
@@ -47,7 +47,7 @@ def thursdaySum():
         if thursday_count == '☑':
             thursday_logs.append(thursday_count)
     count = len(thursday_logs)
-    print(thursday_logs)
+    # print(thursday_logs)
     return str(count)
 
 def wednesdaySum():
@@ -57,7 +57,7 @@ def wednesdaySum():
         if wednesday_count == '☑':
             wednesday_logs.append(wednesday_count)
     count = len(wednesday_logs)
-    print(wednesday_logs)
+    # print(wednesday_logs)
     return str(count)
 
 def fridaySum():
@@ -67,7 +67,7 @@ def fridaySum():
         if friday_count == '☑':
             friday_logs.append(friday_count)
     count = len(friday_logs)
-    print(friday_logs)
+    # print(friday_logs)
     return str(count)
 
 def saturdaySum():
@@ -77,7 +77,7 @@ def saturdaySum():
         if saturday_count == '☑':
             saturday_logs.append(saturday_count)
     count = len(saturday_logs)
-    print(saturday_logs)
+    # print(saturday_logs)
     return str(count)
 
 def sundaySum():
@@ -87,7 +87,7 @@ def sundaySum():
         if sunday_count == '☑':
             sunday_logs.append(sunday_count)
     count = len(sunday_logs)
-    print(sunday_logs)
+    # print(sunday_logs)
     return str(count)
 
 # home page
@@ -123,25 +123,23 @@ def habits_submit():
     }
     
     # blank()
-
-    # if habit.get('monday') == '':
-    #     habit.monday = ''
-    # if habits.find_one('tuesday') == 'None':
-    #     habit['tuesday'] = ''
-    # if habits.find_one('wednesday') == 'None':
-    #     habit['wednesday'] = ''
-    # if habits.find_one('thursday') == 'None':
-    #     habit['thursday'] = ''
-    # if habits.find_one('friday') == 'None':
-    #     habit['friday'] = ''
-    # if habits.find_one('saturday') == 'None':
-    #     habit['saturday'] = ''
-    # if habits.find_one('sunday') == 'None':
-    #     habit['sunday'] = ''
     
-    habits.insert_one(habit)
-
+    if habit["monday"] != '☑':
+        habit['monday'] = ''
+    if habit['tuesday'] != '☑':
+        habit["tuesday"] = ''
+    if habit['wednesday'] != '☑':
+        habit['wednesday'] = ''
+    if habit['thursday'] != '☑':
+        habit["thursday"] = ''
+    if habit["friday"] != '☑':
+        habit['friday'] = ''
+    if habit['saturday'] != '☑':
+        habit["saturday"] = ''
+    if habit["sunday"] != '☑':
+        habit['sunday'] = ''
     print(habits.find_one('monday'))
+    habits.insert_one(habit)
     # print(habit['monday'].value)
     return redirect(url_for('.index'))
 
