@@ -84,6 +84,13 @@ def habits_edit(habit_id):
 def habits_update(habit_id):
     updated_habit = {
         'name': request.form.get('name'),
+        'monday': request.form.get('monday'),
+        'tuesday': request.form.get('tuesday'),
+        'wednesday': request.form.get('wednesday'),
+        'thursday':request.form.get('thursday'),
+        'friday': request.form.get('friday'),
+        'saturday': request.form.get('saturday'),
+        'sunday': request.form.get('sunday')
     }
     # set the former playlist to the new one we just updated/edited
     habits.update_one(
