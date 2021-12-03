@@ -1,0 +1,65 @@
+<!-- templstes/stats.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class = "nav">
+        <a class="navbar-brand nav-link" href="/">Habit Log </a>
+        <a class="nav-item nav-link active" href="/habits/stats">Stats <span class="sr-only">(current)</span></a>
+    </div>
+    <h1>Stats</h1>
+
+    <div class="container pb-5 pt-5 mb-5 mt-5">
+        <h2>Top 3 Habits</h2>
+        <div class="row">
+            <div class="card col-lg-4">
+                <!-- <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0577/7149/1504/products/pleasing_06.jpg?v=1636654730" alt="Card image cap"> -->
+                <div class="card-body">
+                  <h5 class="card-title">Most Frequent Habit</h5>
+                  <p class="card-text lead">MOST FREQUESNT HABIT HERE</p>
+                </div>
+            </div>
+
+            <div class="card col-lg-4">
+                <!-- <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0577/7149/1504/products/pleasing_19.jpg?v=1636656084" alt="Card image cap"> -->
+                <div class="card-body">
+                  <h5 class="card-title">HABIT 2</h5>
+                  <p class="card-text lead">habit 2</p>
+                </div>
+            </div>
+
+            <div class="card col-lg-4">
+                <div class="card-body">
+                  <h5 class="card-title">HABIT 3</h5>
+                  <p class="card-text">habit 3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5 pt-5 mb-5 mt-5">
+        <div class="row">
+            <div class="card col-lg-4">
+                <!-- <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0577/7149/1504/products/pleasing_06.jpg?v=1636654730" alt="Card image cap"> -->
+                <div class="card-body">
+                  <h5 class="card-title">Complete</h5>
+                  <p class="card-text lead">number checked/total</p>
+                </div>
+            </div>
+
+            <div class="card col-lg-4">
+                <!-- <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0577/7149/1504/products/pleasing_19.jpg?v=1636656084" alt="Card image cap"> -->
+                <div class="card-body">
+                  <h5 class="card-title">streak</h5>
+                  <p class="card-text lead">number of times a habit is logged</p>
+                </div>
+            </div>
+
+            <div class="card col-lg-4">
+                <div class="card-body">
+                  <h5 class="card-title">Average</h5>
+                  <p class="card-text">number of completion per habit/days in week</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

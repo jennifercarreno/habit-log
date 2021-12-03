@@ -3,7 +3,8 @@
 
 {% block content %}
     <div class = "nav">
-        <h1> Habit Log </h1>
+        <a class="navbar-brand nav-link active" href="/">Habit Log <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/habits/stats">Stats</a>
     </div>
     
     <h3> Weekly </h3>
@@ -47,13 +48,13 @@
         {% endfor %}
         <tr>
             <th>Total</th>
-            <td>sum</td>
-            <td>sum</td>
-            <td>sum</td>
-            <td>sum</td>
-            <td>sum</td>
-            <td>sum</td>
-            <td>sum</td>
+            <td>{{monday_count}}</td>
+            <td>{{tuesday_count}}</td>
+            <td>{{wednesday_count}}</td>
+            <td>{{thursday_count}}</td>
+            <td>{{friday_count}}</td>
+            <td>{{saturday_count}}</td>
+            <td>{{sunday_count}}</td>
 
         </tr>
     </table>

@@ -20,10 +20,88 @@ def blank():
     
     return
 
+def mondaySum():
+    monday_logs =[]
+    for habit in habits.find():
+        monday_count = habit.get('monday')
+        if monday_count == '☑':
+            monday_logs.append(monday_count)
+    count = len(monday_logs)
+    print(monday_logs)
+    return str(count)
+
+def tuesdaySum():
+    tuesday_logs =[]
+    for habit in habits.find():
+        tuesday_count = habit.get('tuesday')
+        if tuesday_count == '☑':
+            tuesday_logs.append(tuesday_count)
+    count = len(tuesday_logs)
+    print(tuesday_logs)
+    return str(count)
+
+def thursdaySum():
+    thursday_logs =[]
+    for habit in habits.find():
+        thursday_count = habit.get('thursday')
+        if thursday_count == '☑':
+            thursday_logs.append(thursday_count)
+    count = len(thursday_logs)
+    print(thursday_logs)
+    return str(count)
+
+def wednesdaySum():
+    wednesday_logs =[]
+    for habit in habits.find():
+        wednesday_count = habit.get('wednesday')
+        if wednesday_count == '☑':
+            wednesday_logs.append(wednesday_count)
+    count = len(wednesday_logs)
+    print(wednesday_logs)
+    return str(count)
+
+def fridaySum():
+    friday_logs =[]
+    for habit in habits.find():
+        friday_count = habit.get('friday')
+        if friday_count == '☑':
+            friday_logs.append(friday_count)
+    count = len(friday_logs)
+    print(friday_logs)
+    return str(count)
+
+def saturdaySum():
+    saturday_logs =[]
+    for habit in habits.find():
+        saturday_count = habit.get('saturday')
+        if saturday_count == '☑':
+            saturday_logs.append(saturday_count)
+    count = len(saturday_logs)
+    print(saturday_logs)
+    return str(count)
+
+def sundaySum():
+    sunday_logs =[]
+    for habit in habits.find():
+        sunday_count = habit.get('sunday')
+        if sunday_count == '☑':
+            sunday_logs.append(sunday_count)
+    count = len(sunday_logs)
+    print(sunday_logs)
+    return str(count)
+
 # home page
 @app.route('/')
 def index():
-    return render_template('home.html', habits=habits.find())
+    monday_count = mondaySum()
+    tuesday_count = tuesdaySum()
+    wednesday_count = wednesdaySum()
+    thursday_count = thursdaySum()
+    friday_count = fridaySum()
+    saturday_count = saturdaySum()
+    sunday_count = sundaySum()
+
+    return render_template('home.html', habits=habits.find(), monday_count = monday_count, tuesday_count = tuesday_count, wednesday_count = wednesday_count, thursday_count = thursday_count, friday_count = friday_count, saturday_count = saturday_count, sunday_count = sunday_count)
 
 # prompts to create a new habit
 @app.route('/habits/new')
@@ -99,5 +177,8 @@ def habits_update(habit_id):
     # take us back to the playlist's show page
     return redirect(url_for('index'))
 
+@app.route('/habits/stats')
+def habits_stats():
+    return render_template('stats.html')
 if __name__ == '__main__':
     app.run(debug=True)
