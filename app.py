@@ -8,17 +8,22 @@ host = os.environ.get('DB_URL')
 client = MongoClient(host=host)
 db = client.habitLog
 habits = db.habits
-
+top_number = 0
+global second_habit
+global third_habit
 app = Flask(__name__)
 
-def blank():
+def top_habits():
     for habit in habits.find():
-        habit_check = habit.get('monday')
-        if habit_check != '☑':
-            habit["monday"] = 'test'
-            print("found unchecked")
-    
-    return
+        print(habit['count'])
+        if habit['count'] > top_number:
+            habit['count'] = top_number
+            top_habit = habit['name']
+            print(top_habit)
+        else:
+            print('test')
+
+    return(top_habit)
 
 def mondaySum():
     monday_logs =[]
@@ -100,8 +105,7 @@ def index():
     friday_count = fridaySum()
     saturday_count = saturdaySum()
     sunday_count = sundaySum()
-
-    return render_template('home.html', habits=habits.find(), monday_count = monday_count, tuesday_count = tuesday_count, wednesday_count = wednesday_count, thursday_count = thursday_count, friday_count = friday_count, saturday_count = saturday_count, sunday_count = sunday_count)
+    return render_template('home.html', habits=habits.find(), monday_count = monday_count, tuesday_count = tuesday_count, wednesday_count = wednesday_count, thursday_count = thursday_count, friday_count = friday_count, saturday_count = saturday_count, sunday_count = sunday_count,)
 
 # prompts to create a new habit
 @app.route('/habits/new')
@@ -119,25 +123,38 @@ def habits_submit():
         'thursday':request.form.get('thursday'),
         'friday': request.form.get('friday'),
         'saturday': request.form.get('saturday'),
-        'sunday': request.form.get('sunday')
+        'sunday': request.form.get('sunday'),
+        'count': 0
     }
-    
-    # blank()
-    
+        
     if habit["monday"] != '☑':
         habit['monday'] = ''
+    else:
+        habit['count'] += 1
     if habit['tuesday'] != '☑':
         habit["tuesday"] = ''
+    else:
+        habit['count'] += 1
     if habit['wednesday'] != '☑':
         habit['wednesday'] = ''
+    else:
+        habit['count'] += 1
     if habit['thursday'] != '☑':
         habit["thursday"] = ''
+    else:
+        habit['count'] += 1
     if habit["friday"] != '☑':
         habit['friday'] = ''
+    else:
+        habit['count'] += 1
     if habit['saturday'] != '☑':
         habit["saturday"] = ''
+    else:
+        habit['count'] += 1
     if habit["sunday"] != '☑':
         habit['sunday'] = ''
+    else:
+        habit['count'] += 1
     print(habits.find_one('monday'))
     habits.insert_one(habit)
     # print(habit['monday'].value)
@@ -191,6 +208,8 @@ def habits_update(habit_id):
 
 @app.route('/habits/stats')
 def habits_stats():
-    return render_template('stats.html')
+    for habit in habits.find():
+        top_one_habits = top_habits()
+    return render_template('stats.html', top_one_habits=top_one_habits)
 if __name__ == '__main__':
     app.run(debug=True)
