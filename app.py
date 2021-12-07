@@ -46,7 +46,7 @@ def mondaySum():
     monday_logs =[]
     for habit in habits.find():
         monday_count = habit.get('monday')
-        if monday_count == '☑':
+        if monday_count == '✅':
             monday_logs.append(monday_count)
     count = len(monday_logs)
     # print(monday_logs)
@@ -56,7 +56,7 @@ def tuesdaySum():
     tuesday_logs =[]
     for habit in habits.find():
         tuesday_count = habit.get('tuesday')
-        if tuesday_count == '☑':
+        if tuesday_count == '✅':
             tuesday_logs.append(tuesday_count)
     count = len(tuesday_logs)
     # print(tuesday_logs)
@@ -66,7 +66,7 @@ def thursdaySum():
     thursday_logs =[]
     for habit in habits.find():
         thursday_count = habit.get('thursday')
-        if thursday_count == '☑':
+        if thursday_count == '✅':
             thursday_logs.append(thursday_count)
     count = len(thursday_logs)
     # print(thursday_logs)
@@ -76,7 +76,7 @@ def wednesdaySum():
     wednesday_logs =[]
     for habit in habits.find():
         wednesday_count = habit.get('wednesday')
-        if wednesday_count == '☑':
+        if wednesday_count == '✅':
             wednesday_logs.append(wednesday_count)
     count = len(wednesday_logs)
     # print(wednesday_logs)
@@ -86,7 +86,7 @@ def fridaySum():
     friday_logs =[]
     for habit in habits.find():
         friday_count = habit.get('friday')
-        if friday_count == '☑':
+        if friday_count == '✅':
             friday_logs.append(friday_count)
     count = len(friday_logs)
     # print(friday_logs)
@@ -96,7 +96,7 @@ def saturdaySum():
     saturday_logs =[]
     for habit in habits.find():
         saturday_count = habit.get('saturday')
-        if saturday_count == '☑':
+        if saturday_count == '✅':
             saturday_logs.append(saturday_count)
     count = len(saturday_logs)
     # print(saturday_logs)
@@ -106,7 +106,7 @@ def sundaySum():
     sunday_logs =[]
     for habit in habits.find():
         sunday_count = habit.get('sunday')
-        if sunday_count == '☑':
+        if sunday_count == '✅':
             sunday_logs.append(sunday_count)
     count = len(sunday_logs)
     # print(sunday_logs)
@@ -124,6 +124,16 @@ def complete_habits():
     print(total)
     print('habit_total')
     return(f"{round(percent_complete, 2)}%", complete)
+
+def average_habits():
+    habit_sum = 0
+    count = 0
+    for habit in habits.find():
+        habit_sum += habit["count"]
+        count += 1
+    average = habit_sum / count
+    return(average)
+
 # home page
 @app.route('/')
 def index():
@@ -156,32 +166,32 @@ def habits_submit():
         'count': 0
     }
         
-    if habit["monday"] != '☑':
-        habit['monday'] = ''
+    if habit["monday"] != '✅':
+        habit['monday'] = '❌'
     else:
         habit['count'] += 1
-    if habit['tuesday'] != '☑':
-        habit["tuesday"] = ''
+    if habit['tuesday'] != '✅':
+        habit["tuesday"] = '❌'
     else:
         habit['count'] += 1
-    if habit['wednesday'] != '☑':
-        habit['wednesday'] = ''
+    if habit['wednesday'] != '✅':
+        habit['wednesday'] = '❌'
     else:
         habit['count'] += 1
-    if habit['thursday'] != '☑':
-        habit["thursday"] = ''
+    if habit['thursday'] != '✅':
+        habit["thursday"] = '❌'
     else:
         habit['count'] += 1
-    if habit["friday"] != '☑':
-        habit['friday'] = ''
+    if habit["friday"] != '✅':
+        habit['friday'] = '❌'
     else:
         habit['count'] += 1
-    if habit['saturday'] != '☑':
-        habit["saturday"] = ''
+    if habit['saturday'] != '✅':
+        habit["saturday"] = '❌'
     else:
         habit['count'] += 1
-    if habit["sunday"] != '☑':
-        habit['sunday'] = ''
+    if habit["sunday"] != '✅':
+        habit['sunday'] = '❌'
     else:
         habit['count'] += 1
     print(habits.find_one('monday'))
@@ -214,20 +224,20 @@ def habits_update(habit_id):
         'saturday': request.form.get('saturday'),
         'sunday': request.form.get('sunday')
     }
-    if updated_habit["monday"] != '☑':
-        updated_habit['monday'] = ''
-    if updated_habit['tuesday'] != '☑':
-        updated_habit["tuesday"] = ''
-    if updated_habit['wednesday'] != '☑':
-        updated_habit['wednesday'] = ''
-    if updated_habit['thursday'] != '☑':
-        updated_habit["thursday"] = ''
-    if updated_habit["friday"] != '☑':
-        updated_habit['friday'] = ''
-    if updated_habit['saturday'] != '☑':
-        updated_habit["saturday"] = ''
-    if updated_habit["sunday"] != '☑':
-        updated_habit['sunday'] = ''
+    if updated_habit["monday"] != '✅':
+        updated_habit['monday'] = '❌'
+    if updated_habit['tuesday'] != '✅':
+        updated_habit["tuesday"] = '❌'
+    if updated_habit['wednesday'] != '✅':
+        updated_habit['wednesday'] = '❌'
+    if updated_habit['thursday'] != '✅':
+        updated_habit["thursday"] = '❌'
+    if updated_habit["friday"] != '✅':
+        updated_habit['friday'] = '❌'
+    if updated_habit['saturday'] != '✅':
+        updated_habit["saturday"] = '❌'
+    if updated_habit["sunday"] != '✅':
+        updated_habit['sunday'] = '❌'
     # set the former playlist to the new one we just updated/edited
     habits.update_one(
         {'_id': ObjectId(habit_id)},
@@ -243,7 +253,8 @@ def habits_stats():
     top_third_habit = top_habits()[2]
     complate_habit  = complete_habits()[0]
     complete_tally = complete_habits()[1]
-    return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit, complate_habit = complate_habit, complete_tally = complete_tally)
+    average_habit_count = average_habits()
+    return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit, complate_habit = complate_habit, complete_tally = complete_tally, average_habit_count = average_habit_count)
 
 if __name__ == '__main__':
     app.run(debug=True)

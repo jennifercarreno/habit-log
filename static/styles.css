@@ -18,7 +18,7 @@ body {
 }
 
 .card {
-    border: none;
+    /* border: none; */
     background-color: rgb(48, 49, 52);
 }
 
@@ -49,4 +49,5 @@ button:hover {
 a:hover:not(.active) {
     color: lightskyblue;
 }
+
 
