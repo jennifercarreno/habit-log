@@ -20,21 +20,21 @@ def top_habits():
     third_number = 0
     third_habit = 'none'
     for habit in habits.find():
-        print(habit['count'])
+        # print(habit['count'])
         if habit['count'] > top_number:
             top_number = habit['count']
             top_habit = habit['name']
-            print(top_habit)
+            # print(top_habit)
 
         elif habit['count'] < top_number and habit['count'] > second_number:
             second_number = habit['count']
             second_habit = habit['name']
-            print('test')
+            # print('test')
 
         elif habit['count'] < second_number and habit['count'] > third_number:
             third_number = habit['count']
             third_habit = habit['name']
-            print(third_habit)
+            # print(third_habit)
         else: 
             print('test')
         
@@ -112,6 +112,18 @@ def sundaySum():
     # print(sunday_logs)
     return str(count)
 
+def complete_habits():
+    total = 0
+    habit_total = 0
+    for habit in habits.find():
+        habit_total += habit['count']
+        total += 1
+
+    percent_complete = (habit_total / (total * 7)) * 100
+    complete = f"{habit_total} / {total * 7}"
+    print(total)
+    print('habit_total')
+    return(f"{round(percent_complete, 2)}%", complete)
 # home page
 @app.route('/')
 def index():
@@ -229,7 +241,9 @@ def habits_stats():
     top_one_habits = top_habits()[0]
     top_second_habit = top_habits()[1]
     top_third_habit = top_habits()[2]
-    return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit)
+    complate_habit  = complete_habits()[0]
+    complete_tally = complete_habits()[1]
+    return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit, complate_habit = complate_habit, complete_tally = complete_tally)
 
 if __name__ == '__main__':
     app.run(debug=True)
