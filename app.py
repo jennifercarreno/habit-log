@@ -8,22 +8,39 @@ host = os.environ.get('DB_URL')
 client = MongoClient(host=host)
 db = client.habitLog
 habits = db.habits
-top_number = 0
-global second_habit
-global third_habit
 app = Flask(__name__)
 
 def top_habits():
+    global top_number
+    global top_habit
+    global third_habit
+    global second_habit
+    top_number = 0
+    second_number = 0
+    third_number = 0
+    third_habit = 'none'
     for habit in habits.find():
         print(habit['count'])
         if habit['count'] > top_number:
-            habit['count'] = top_number
+            top_number = habit['count']
             top_habit = habit['name']
             print(top_habit)
-        else:
+
+        elif habit['count'] < top_number and habit['count'] > second_number:
+            second_number = habit['count']
+            second_habit = habit['name']
             print('test')
 
-    return(top_habit)
+        elif habit['count'] < second_number and habit['count'] > third_number:
+            third_number = habit['count']
+            third_habit = habit['name']
+            print(third_habit)
+        else: 
+            print('test')
+        
+    print(top_habit)
+    print(top_number)
+    return(top_habit, second_habit, third_habit)
 
 def mondaySum():
     monday_logs =[]
@@ -208,8 +225,11 @@ def habits_update(habit_id):
 
 @app.route('/habits/stats')
 def habits_stats():
-    for habit in habits.find():
-        top_one_habits = top_habits()
-    return render_template('stats.html', top_one_habits=top_one_habits)
+
+    top_one_habits = top_habits()[0]
+    top_second_habit = top_habits()[1]
+    top_third_habit = top_habits()[2]
+    return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit)
+
 if __name__ == '__main__':
     app.run(debug=True)
