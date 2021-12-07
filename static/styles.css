@@ -13,4 +13,40 @@ td {
 }
 body {
     text-align: center;
+    background-color:rgb(48, 49, 52);
+    color: white;
 }
+
+.card {
+    border: none;
+    background-color: rgb(48, 49, 52);
+}
+
+
+a {
+    color: cornflowerblue;
+}
+
+.active {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.check {
+    color:indianred;
+}
+
+button {
+    background-color: rgb(48, 49, 52);
+    color: indianred;
+    border: none;
+}
+
+button:hover {
+    color: lightcoral;
+}
+
+a:hover:not(.active) {
+    color: lightskyblue;
+}
+

@@ -3,11 +3,11 @@
 
 {% block content %}
     <div class = "nav">
-        <a class="navbar-brand nav-link active" href="/">Habit Log <span class="sr-only">(current)</span></a>
+        <a class="navbar-brand nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="/habits/stats">Stats</a>
     </div>
     
-    <h3> Weekly </h3>
+    <h3 class="title"> Habit Tracker </h3>
 
     <table class = "table-bordered">
         <tr>
@@ -25,14 +25,14 @@
 
         {% for habit in habits %}
             <tr>
-                <td style="text-align: center;">{{ habit.name }}</td>
-                <td style="text-align: center;">{{ habit.monday }}</td>
-                <td style="text-align: center;">{{ habit.tuesday }}</td>
-                <td style="text-align: center;">{{ habit.wednesday }}</td>
-                <td style="text-align: center;">{{ habit.thursday }}</td>
-                <td style="text-align: center;">{{ habit.friday }}</td>
-                <td style="text-align: center;">{{ habit.saturday }}</td>
-                <td style="text-align: center;">{{ habit.sunday }}</td>
+                <td style="text-align: center;" class="habit-name">{{ habit.name }}</td>
+                <td style="text-align: center;" class="check">{{ habit.monday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.tuesday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.wednesday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.thursday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.friday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.saturday }}</td>
+                <td style="text-align: center;" class="check">{{ habit.sunday }}</td>
                 <td style="text-align: center;"> {{habit.count}} </td>
                 
                 <td style="text-align: center;">
