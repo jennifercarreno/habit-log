@@ -222,22 +222,38 @@ def habits_update(habit_id):
         'thursday':request.form.get('thursday'),
         'friday': request.form.get('friday'),
         'saturday': request.form.get('saturday'),
-        'sunday': request.form.get('sunday')
+        'sunday': request.form.get('sunday'),
+        'count': 0
+
     }
     if updated_habit["monday"] != '✅':
         updated_habit['monday'] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit['tuesday'] != '✅':
         updated_habit["tuesday"] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit['wednesday'] != '✅':
         updated_habit['wednesday'] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit['thursday'] != '✅':
         updated_habit["thursday"] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit["friday"] != '✅':
         updated_habit['friday'] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit['saturday'] != '✅':
         updated_habit["saturday"] = '❌'
+    else:
+        updated_habit['count'] += 1
     if updated_habit["sunday"] != '✅':
         updated_habit['sunday'] = '❌'
+    else:
+        updated_habit['count'] += 1
     # set the former playlist to the new one we just updated/edited
     habits.update_one(
         {'_id': ObjectId(habit_id)},

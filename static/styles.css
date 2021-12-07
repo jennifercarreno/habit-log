@@ -18,7 +18,7 @@ body {
 }
 
 .card {
-    /* border: none; */
+    border: none;
     background-color: rgb(48, 49, 52);
 }
 
