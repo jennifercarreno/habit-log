@@ -13,41 +13,63 @@ td {
 }
 body {
     text-align: center;
-    background-color:rgb(48, 49, 52);
-    color: white;
 }
 
 .card {
     border: none;
-    background-color: rgb(48, 49, 52);
 }
 
 
 a {
-    color: cornflowerblue;
+    color:mediumslateblue;
 }
 
 .active {
-    background-color: cornflowerblue;
+    background-color:mediumslateblue;
     color: white;
+    
 }
 
-.check {
-    color:indianred;
-}
 
 button {
-    background-color: rgb(48, 49, 52);
-    color: indianred;
+    color: mediumslateblue;
+    background-color: white;
     border: none;
 }
 
 button:hover {
-    color: lightcoral;
+    color: cornflowerblue;
 }
 
-a:hover:not(.active) {
-    color: lightskyblue;
+a:hover:not(.active, .nav-item) {
+    color:cornflowerblue;
 }
 
+.nav-item:hover {
+    background-color:mediumslateblue;
+    color: white;
+}
+
+.active:hover {
+    color: white;
+}
+
+.title {
+    background-color: mediumslateblue;
+    color: white;
+    width: 1000px;
+}
+
+h5 {
+    color: mediumslateblue;
+}
+
+img {
+    width: 200px;
+}
+
+h2 {
+    text-align: left;
+    padding-bottom: 2rem;
+}
 
