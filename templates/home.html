@@ -2,12 +2,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="page-body">
     <div class = "nav">
         <a class="navbar-brand nav-link active mx-0" href="/">Home </a>
         <a class="nav-item nav-link" href="/habits/stats">Stats</a>
     </div>
     
-    <h3 class="title container py-2"> Life Log </h3>
+    <h1 class="title py-2"> Life Log </h1>
 
     <table class = "table-bordered">
         <tr>
@@ -61,7 +62,10 @@
         </tr>
     </table>
 
-    <div class="footer">
-        <a href='/habits/new'>New Habit</a>
+    <a href='/habits/new'><button id="new-habit-btn"> New Habit + </button></a>
+
+</div>
+    <div class="footer py-2">
+        © Jennifer Carreno 2021
     </div>
 {% endblock %}

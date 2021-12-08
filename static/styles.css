@@ -2,7 +2,8 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    width: 1000px;
+    width: 1500px;
+    height: 60vh;
 }
 th {
     text-align: center;
@@ -20,7 +21,7 @@ body {
 }
 
 
-a {
+a:not(button) {
     color:mediumslateblue;
 }
 
@@ -31,7 +32,7 @@ a {
 }
 
 
-button {
+button:not(#new-habit-btn) {
     color: mediumslateblue;
     background-color: white;
     border: none;
@@ -57,7 +58,9 @@ a:hover:not(.active, .nav-item) {
 .title {
     background-color: mediumslateblue;
     color: white;
-    width: 1000px;
+    width: 1500px;
+    margin: auto;
+    margin-top: 2rem;
 }
 
 h5 {
@@ -73,3 +76,25 @@ h2 {
     padding-bottom: 2rem;
 }
 
+
+#new-habit-btn {
+    background-color:mediumslateblue;
+    color: white;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 5%;
+}
+
+.edit-table {
+    height: 50%;
+}
+ 
+.page-body {
+    height: 95vh;
+}
+
+.footer {
+    background-color: mediumslateblue;
+    color: white;
+    height: 5vh;
+}
