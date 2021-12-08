@@ -62,8 +62,29 @@
         </tr>
     </table>
 
-    <a href='/habits/new'><button id="new-habit-btn"> New Habit + </button></a>
+    <a href='/habits/new'><button id="new-habit-btn" class="action-button"> New Habit + </button></a>
+    <div class="to-do-list">
+    <h2 class="title py-2 text-center">To-Do List</h2>
+    <table class="table to-do-list my-2 mx-auto">
+        
+        {% for task in tasks %}
+        <tr style="text-align: center;">
+            <ol>
+                <td><li>{{task.name}}</li></td>
+            </ol>
+            
+            <td><a href="/delete/{{task.id}}">Complete</a></td>
+        </tr>
+        {% endfor %}
 
+    </table>
+    <div class="form pb-4 pt-2" >
+        <form actions="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="Add Task" id="task-button" class="action-button">
+        </form>
+    </div>
+</div>
 </div>
     <div class="footer py-2">
         © Jennifer Carreno 2021

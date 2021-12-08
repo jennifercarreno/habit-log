@@ -8,6 +8,7 @@ host = os.environ.get('DB_URL')
 client = MongoClient(host=host)
 db = client.habitLog
 habits = db.habits
+tasks = db.tasks
 app = Flask(__name__)
 
 def top_habits():
@@ -152,7 +153,7 @@ def index():
     friday_count = fridaySum()
     saturday_count = saturdaySum()
     sunday_count = sundaySum()
-    return render_template('home.html', habits=habits.find(), monday_count = monday_count, tuesday_count = tuesday_count, wednesday_count = wednesday_count, thursday_count = thursday_count, friday_count = friday_count, saturday_count = saturday_count, sunday_count = sunday_count,)
+    return render_template('home.html', habits=habits.find(), monday_count = monday_count, tuesday_count = tuesday_count, wednesday_count = wednesday_count, thursday_count = thursday_count, friday_count = friday_count, saturday_count = saturday_count, sunday_count = sunday_count, tasks=tasks.find())
 
 # prompts to create a new habit
 @app.route('/habits/new')
@@ -269,6 +270,7 @@ def habits_update(habit_id):
     # take us back to the playlist's show page
     return redirect(url_for('index'))
 
+#display stats page
 @app.route('/habits/stats')
 def habits_stats():
 
@@ -279,6 +281,14 @@ def habits_stats():
     complete_tally = complete_habits()[1]
     average_habit_count = average_habits()
     return render_template('stats.html', top_one_habits=top_one_habits, top_second_habit = top_second_habit, top_third_habit = top_third_habit, complate_habit = complate_habit, complete_tally = complete_tally, average_habit_count = average_habit_count)
+
+@app.route('/', methods=['POST'])
+def post_todos():
+    task = {
+        'name': request.form.get('content')
+    }
+    tasks.insert_one(task)
+    return redirect(url_for('.index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
