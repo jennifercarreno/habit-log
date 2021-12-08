@@ -18,28 +18,36 @@ def top_habits():
     top_number = 0
     second_number = 0
     third_number = 0
-    third_habit = 'none'
     for habit in habits.find():
-        # print(habit['count'])
-        if habit['count'] > top_number:
-            top_number = habit['count']
-            top_habit = habit['name']
-            # print(top_habit)
-
-        elif habit['count'] < top_number and habit['count'] > second_number:
-            second_number = habit['count']
-            second_habit = habit['name']
-            # print('test')
-
-        elif habit['count'] < second_number and habit['count'] > third_number:
-            third_number = habit['count']
-            third_habit = habit['name']
-            # print(third_habit)
-        else: 
-            print('test')
         
-    print(top_habit)
-    print(top_number)
+        for habit in habits.find():
+            # print(habit['count'])
+            # print(habit)
+            if habit['count'] > top_number:
+                top_number = habit['count']
+                top_habit = habit['name']
+                # print(f"top habit: {top_habit}")
+                # print(f"top number: {top_number}")
+                # print("first if done")
+
+            if habit['count'] < top_number and habit['count'] > second_number:
+                second_number = habit['count']
+                second_habit = habit['name']
+                # print(f"second number: {second_number}")
+                # print(f"secong habit: {second_habit}")
+                # print("second if done")
+
+            if habit['count'] < second_number and habit['count'] > third_number:
+                third_number = habit['count']
+                third_habit = habit['name']
+                # print(f"third number: {third_number}")
+                # print(f"third habit: {third_habit}")
+                # print("third if done")
+
+            if habit['count'] < third_number: 
+                print('----')
+        
+    # print("one round done")
     return(top_habit, second_habit, third_habit)
 
 def mondaySum():
@@ -121,8 +129,8 @@ def complete_habits():
 
     percent_complete = (habit_total / (total * 7)) * 100
     complete = f"{habit_total} / {total * 7}"
-    print(total)
-    print('habit_total')
+    # print(total)
+    # print('habit_total')
     return(f"{round(percent_complete, 2)}%", complete)
 
 def average_habits():
@@ -132,7 +140,7 @@ def average_habits():
         habit_sum += habit["count"]
         count += 1
     average = habit_sum / count
-    return(average)
+    return(round(average, 2))
 
 # home page
 @app.route('/')
