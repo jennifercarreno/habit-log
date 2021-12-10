@@ -65,13 +65,13 @@
     <a href='/habits/new'><button id="new-habit-btn" class="action-button"> New Habit + </button></a>
     <div class="to-do-list">
     <h2 class="title py-2 text-center">To-Do List</h2>
-    <table class="table to-do-list my-2 mx-auto">
-        
+    <table class="table to-do-list my-2 mx-auto table-sm">
+        <h5 class="text-left py-2 mx-4">Tasks</h5>
         {% for task in tasks %}
         <tr style="text-align: center;">
-            <ol>
-                <td><li>{{task.name}}</li></td>
-            </ol>
+           
+            <td><li>{{task.name}}</li></td>
+            
             
             <td><a href="/delete/{{task.id}}">Complete</a></td>
         </tr>
