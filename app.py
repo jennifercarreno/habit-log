@@ -6,7 +6,7 @@ import os
 
 host = os.environ.get('DB_URL')
 client = MongoClient(host=host)
-db = client.habitLog
+db = client.lifeLog
 habits = db.habits
 tasks = db.tasks
 app = Flask(__name__)
@@ -47,6 +47,8 @@ def top_habits():
 
             if habit['count'] < third_number: 
                 print('----')
+        
+       
         
     # print("one round done")
     return(top_habit, second_habit, third_habit)

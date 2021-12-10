@@ -3,7 +3,7 @@ table:not(.to-do-list) {
     margin-right: auto;
     margin-top: 20px;
     width: 1500px;
-    height: 60vh;
+    /* height: 60vh; */
 }
 th {
     text-align: center;
@@ -89,9 +89,6 @@ h2 {
     height: 50%;
 }
  
-/* .page-body {
-    height: 95vh;
-} */
 
 .footer {
     background-color: mediumslateblue;
