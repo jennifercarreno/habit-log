@@ -12,13 +12,16 @@ tasks = db.tasks
 app = Flask(__name__)
 
 def top_habits():
-    global top_number
     global top_habit
     global third_habit
     global second_habit
     top_number = 0
     second_number = 0
     third_number = 0
+
+    top_habit = "None"
+    second_habit = "None"
+    third_habit = "None"
     for habit in habits.find():
         
         for habit in habits.find():
@@ -42,10 +45,10 @@ def top_habits():
                 third_number = habit['count']
                 third_habit = habit['name']
                 # print(f"third number: {third_number}")
-                # print(f"third habit: {third_habit}")
+                print(f"third habit: {third_habit}")
                 # print("third if done")
 
-            if habit['count'] < third_number: 
+            if third_habit == 'none': 
                 print('----')
         
        
